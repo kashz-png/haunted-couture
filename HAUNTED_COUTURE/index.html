@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAUNTED COUTURE | Maison Noire</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+<header class="topbar">
+  <span class="brand">✦ HAUNTED COUTURE ✦</span>
+  <span id="chapter-label">A mystery at Maison Noire</span>
+  <div class="top-actions">
+    <button id="sound-toggle" title="Toggle sound">♪ SFX: On</button>
+    <button id="save-btn">Save</button>
+  </div>
+</header>
+
+  <main id="screen" class="screen">
+    <section id="title-screen" class="panel title-screen">
+      <div class="title-art"></div>
+      <div class="title-overlay">
+        <br>
+        <p class="tagline"><br><br><br><br><br><br><br><br><br><br>The boutique is open...<br>Your appointment was never made.</p>
+        <div class="menu-buttons">
+          <button class="primary" id="play-btn">Play</button>
+          <button id="select-btn">Character Selection</button>
+          <button id="settings-btn">Settings</button>
+          <button id="credits-btn">Credits</button>
+        </div>
+      </div>
+    </section>
+    <section id="character-screen" class="panel hidden">
+      <p class="eyebrow">CHOOSE YOUR CHARACTER</p><h2>Who will enter Maison Noire?</h2>
+      <div class="character-grid">
+        <article class="character-card" data-character="Celeste"><div class="avatar celeste"><img src="assets/celeste-portrait.jpg" alt="Celeste character portrait"></div><h3>Celeste</h3><p>Elegant, observant, and endlessly curious.</p><button class="choose-character">Choose Celeste</button></article>
+        <article class="character-card" data-character="Raven"><div class="avatar raven"><img src="assets/raven-portrait.jpg" alt="Raven character portrait"></div><h3>Raven</h3><p>Bold, mysterious, and naturally suspicious.</p><button class="choose-character">Choose Raven</button></article>
+        <article class="character-card" data-character="Vivienne"><div class="avatar vivienne"><img src="assets/vivienne-portrait.jpg" alt="Vivienne character portrait"></div><h3>Vivienne</h3><p>Intelligent, composed, and determined to uncover secrets.</p><button class="choose-character">Choose Vivienne</button></article>
+      </div>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+    <section id="scroll-screen" class="panel hidden">
+      <div class="scroll"><div class="scroll-inner"><p class="eyebrow">Chapter One · The Invitation</p><h2>A LETTER AFTER MIDNIGHT</h2><p>Three years have passed since the doors of Maison Noire were closed to the public. Tonight, an invitation arrives at your door. Its paper is thick, its edges are worn, and a black rose is pressed into the seal.</p><p>It contains only one sentence:</p><p><b>“The final collection is waiting. Come before midnight.”</b></p><p class="signature">— An admirer of the unfinished</p><button class="primary" id="begin-btn">Enter Maison Noire</button></div></div>
+    </section>
+    <section id="game-screen" class="hidden">
+      <div class="game-layout">
+        <div class="scene-column">
+          <div class="scene-heading"><div><p class="eyebrow" id="chapter-eyebrow">CHAPTER 1</p><h2 id="room-title">The Showroom</h2></div><span id="room-subtitle">Maison Noire • 11:47 PM</span></div>
+          <div id="room-art" class="room-art showroom">
+            <div class="window"><span></span></div><div class="chandelier">✧</div><div class="shelf"></div><div class="mannequin m1"><i></i></div><div class="mannequin m2"><i></i></div><div class="sofa"></div><div class="rug"></div><div class="floor"></div><div class="room-glow"></div>
+            <div class="hotspots" id="hotspots"></div>
+          </div>
+          <div class="room-nav" id="room-nav"></div>
+          <div class="hintline" id="hintline">Explore the room. Click objects that catch your eye.</div>
+        </div>
+        <aside class="side-panel">
+          <div class="tabs"><button class="tab active" data-tab="journal">Journal</button><button class="tab" data-tab="inventory">Inventory</button><button class="tab" data-tab="suspects">Suspects</button></div>
+          <div id="journal-tab" class="tab-content"><h3>Case notes</h3><p id="journal-text">Madame Rose is missing. Find out what happened to her and the collection.<br><br>You notice that the rooms have been disturbed recently as if someone has been searching for something...</p><ul id="clue-list"></ul></div>
+          <div id="inventory-tab" class="tab-content hidden"><h3>Collected evidence</h3><ul id="inventory-list"><li class="muted">Nothing collected yet.</li></ul></div>
+          <div id="suspects-tab" class="tab-content hidden"><h3>People involved</h3><button class="suspect-button" data-suspect="Romaisa">Romaisa Vale</button><button class="suspect-button" data-suspect="Zain">Zain Lucien</button><button class="suspect-button" data-suspect="Amara">Amara Bell</button><p class="small-note">Question each person as you uncover evidence.</p></div>
+          <div class="progress-wrap"><span>Evidence found</span><strong id="progress-count">0 / 8</strong><div class="progress"><i id="progress-bar"></i></div></div>
+          <button class="case-btn" id="case-board-btn">Open case board</button>
+        </aside>
+      </div>
+    </section>
+    <section id="modal-layer" class="modal-layer hidden">
+      <div class="dialogue-card"><button class="close-modal" id="close-modal">×</button><div class="portrait" id="portrait">✦</div><div class="dialogue-copy"><p class="eyebrow" id="dialogue-kind">DISCOVERY</p><h2 id="dialogue-title">A clue</h2><p id="dialogue-text"></p><div id="dialogue-options" class="dialogue-options"></div></div></div>
+    </section>
+    <section id="case-screen" class="panel hidden">
+      <p class="eyebrow">CONNECT THE THREADS</p><h2>The Case Board</h2><p>Who arranged Madame Rose's disappearance?</p><div class="evidence-board" id="evidence-board"></div><div class="accusations"><button data-accuse="Romaisa">Accuse Romaisa</button><button data-accuse="Zain">Accuse Zain</button><button data-accuse="Amara">Accuse Amara</button></div><p class="small-note">You need the missing file and at least five clues to make the strongest case.</p><button class="back-btn" id="case-back">← Return to the boutique</button></section>
+    <section id="ending-screen" class="panel hidden"><p class="eyebrow">THE LAST STITCH</p><h2 id="ending-title">The Truth Revealed</h2><p id="ending-text"></p><blockquote>“Some secrets are stitched into the fabric. Others are stitched into the people who wear them.”</blockquote><p class="signature">THE END</p><button class="primary" id="restart-btn">Return to title</button></section>
+    <section id="settings-screen" class="panel hidden"><p class="eyebrow">PREFERENCES</p><h2>Settings</h2><p>Music and sound effects will be added in future uppdates!</p><label class="setting-row">Text size <select id="text-size"><option value="normal">Comfortable</option><option value="large">Large</option></select></label><button class="back-btn" data-back>← Back</button></section>
+    <section id="credits-screen" class="panel hidden" style="text-align: center;">
+      <p class="eyebrow">A STUDENT GAME PROJECT</p>
+      <h2>HAUNTED COUTURE</h2>
+      <p>The Final Collection</p>
+      <hr>
+      <h2>Credits</h2>
+      <p>Created by</p><p>
+      <b>Kashaf Zahra - Shamaim Bilal - Hania Raza</b>
+      <hr>
+      <p><b>Story & Concept</b></p>
+      <p>Kashaf Zahra</p>
+      <p><b>Game Design & Development</b></p>
+      <p>Kashaf Zahra</p>
+      <p><b>Artwork & Visual Direction</b></p>
+      <p>Original and generated assets</p>
+      <br>
+      <button class="back-btn" data-back>← Back</button>
+    </section>
+  </main>
+  <footer>MAISON NOIRE • THE FINAL COLLECTION IS WAITING</footer>
+</div>
+<script src="game.js"></script>
+</body></html>
